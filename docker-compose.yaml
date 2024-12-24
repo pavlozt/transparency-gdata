@@ -1,0 +1,32 @@
+name: seleparser
+services:
+  geckodriver:
+    container_name: geckodriver
+    image: selenium/standalone-firefox:133.0
+    shm_size: "2gb"
+    environment:
+      - SE_ENABLE_TRACING=false
+      # production settings
+      - SE_START_VNC=false
+      # debug settings
+      #- SE_START_VNC=true
+      #- SE_VNC_NO_PASSWORD=true
+      #- SE_CHROME_DRIVER_LOG_LEVEL=INFO
+
+    # no need publush port normally
+    # open some ports for debugging
+    #ports:
+      #- "4444:4444" #
+      #- "7900:7900" # noVNC
+
+  parser:
+    image: local/parser
+    build:
+      context: parser
+    environment:
+      - SELENIUM_REMOTE_URL=http://geckodriver:4444/wd/hub
+    volumes:
+      - "./data/:/app/data/"
+
+    depends_on:
+      - geckodriver
