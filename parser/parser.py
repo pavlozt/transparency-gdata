@@ -36,7 +36,7 @@ def init_browser():
 def parse_page(s, product, region, start, end):
     base_url = 'https://transparencyreport.google.com/traffic/overview?fraction_traffic='
     try:
-        url = f"{base_url}start:{start};end:{end};product:{product};region:{region}&lu=fraction_traffic"
+        url = f"{base_url}start:{start};end:{end};product:{product};region:{region}&lu=fraction_traffic&hl=en"
         logging.info(f"Fetching: {url}")
         s.get(url)
         logging.info("Loaded")

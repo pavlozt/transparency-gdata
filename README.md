@@ -42,7 +42,7 @@ docker compose build
 Most likely, for the first download you will want to download historical data.
 To do this, you need to run the container with the **--loop** parameter. The necessary date parameters can be obtained from the page URL.
 ```
-docker compose run --rm parser  --loop --start 1643587200000 --end 1734825599999 --pause 10 --product 21 --region RU
+docker compose run --rm parser  --loop --start 1643587200000 --end 1734825599999 --pause 10 --product 21 --region RU --filename data-RU.xlsx
 ```
 
 Parameters can be obtained from the URL in Google Transparency Report. These are millseconds of Unixtime. That is, you need to use Unixtime and multiply by 1000.
